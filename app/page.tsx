@@ -890,7 +890,7 @@ const fetchUserLocation = async () => {
     <div className="w-full max-w-md mx-auto mb-6 px-4 py-3 glass-card rounded-xl border border-amber-500/30">
       <p className="text-center text-sm text-amber-300">
         <AlertTriangle className="inline-block mr-2 mb-0.5" size={14} />
-        <span className="font-medium">Importante:</span> Apenas <span className="font-bold text-white">1 busca GRATUITA</span> por dispositivo
+        <span className="font-medium">Important:</span> Only <span className="font-bold text-white">1 FREE search</span> per device
       </p>
     </div>
   )
@@ -913,28 +913,28 @@ const fetchUserLocation = async () => {
             {/* Logo/Title */}
             <div className="space-y-2">
               <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-4">
-                <span className="text-xs font-semibold tracking-widest text-primary uppercase">Ferramenta Secreta</span>
+                <span className="text-xs font-semibold tracking-widest text-primary uppercase">Secret Tool</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold gradient-text tracking-tight">
                 INSTA CHECK
               </h1>
-              <p className="text-lg text-muted-foreground font-medium">Sistema de Varredura Social</p>
+              <p className="text-lg text-muted-foreground font-medium">Social Scanning System</p>
             </div>
             
             {/* Emotional Hook */}
             <div className="glass-card rounded-2xl p-6 max-w-lg mx-auto border-gradient">
               <p className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Sentindo que algo esta errado?
+                Feeling something is wrong?
               </p>
               <p className="text-base text-muted-foreground leading-relaxed">
-                Voce merece saber a verdade. Ate as conversas que ele tentou esconder...
+                You deserve to know the truth. Even the conversations they tried to hide...
               </p>
             </div>
             
             {/* Features */}
             <div className="space-y-4">
               <p className="text-sm uppercase tracking-wider text-muted-foreground font-medium">
-                Descubra tudo em:
+                Discover everything on:
               </p>
               <div className="flex flex-wrap justify-center gap-4 md:gap-6">
                 <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-purple transition-all duration-300 cursor-default">
@@ -965,7 +965,7 @@ const fetchUserLocation = async () => {
                   <div className="p-3 rounded-full bg-gradient-to-br from-orange-500 to-red-500">
                     <MapPin className="text-white" size={28} />
                   </div>
-                  <span className="text-foreground text-sm font-medium">Localizacao</span>
+                  <span className="text-foreground text-sm font-medium">Location</span>
                 </div>
               </div>
             </div>
@@ -976,13 +976,13 @@ const fetchUserLocation = async () => {
               className="mt-8 px-12 py-6 text-lg font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow"
             >
               <ScanEye className="mr-2" size={24} />
-              Iniciar Varredura
+              Start Scanning
             </Button>
             
             {/* Trust Badge */}
             <p className="text-xs text-muted-foreground mt-6">
               <Lock className="inline-block mr-1 mb-0.5" size={12} />
-              Analise 100% anonima e confidencial
+              100% anonymous and confidential analysis
             </p>
           </div>
         )
@@ -993,13 +993,13 @@ const fetchUserLocation = async () => {
             <LimitWarningBanner />
             <div className="space-y-2">
               <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-2">
-                <span className="text-xs font-semibold tracking-widest text-primary uppercase">Etapa 1 de 3</span>
+                <span className="text-xs font-semibold tracking-widest text-primary uppercase">Step 1 of 3</span>
               </div>
               <h2 className="text-2xl md:text-4xl font-bold text-foreground">
-                Perfil do <span className="gradient-text-pink">Alvo</span>
+                <span className="gradient-text-pink">Target</span> Profile
               </h2>
               <p className="text-base text-muted-foreground">
-                Preencha os dados para uma analise mais precisa
+                Fill in the details for a more accurate analysis
               </p>
             </div>
             <div className="w-full max-w-sm mx-auto space-y-4">
@@ -1007,7 +1007,7 @@ const fetchUserLocation = async () => {
                 <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
                 <input
                   type="number"
-                  placeholder="Idade da pessoa investigada"
+                  placeholder="Age of the investigated person"
                   value={investigatedAge}
                   onChange={(e) => setInvestigatedAge(e.target.value)}
                   className="w-full p-4 pl-12 glass-card border border-border rounded-xl text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
@@ -1039,11 +1039,11 @@ const fetchUserLocation = async () => {
                   className="w-full p-4 pl-12 glass-card border border-border rounded-xl text-foreground text-base appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 >
                   <option value="" disabled>
-                    Selecione o Genero
+                    Select Gender
                   </option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Feminino">Feminino</option>
-                  <option value="Outro">Outro</option>
+                  <option value="Masculino">Male</option>
+                  <option value="Feminino">Female</option>
+                  <option value="Outro">Other</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-muted-foreground">
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -1055,7 +1055,7 @@ const fetchUserLocation = async () => {
                 <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
                 <input
                   type="text"
-                  placeholder="Localizacao (ex: Sao Paulo, SP)"
+                  placeholder="Location (e.g., New York, USA)"
                   value={investigatedLocation}
                   onChange={(e) => setInvestigatedLocation(e.target.value)}
                   className="w-full p-4 pl-12 glass-card border border-border rounded-xl text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
@@ -1414,66 +1414,80 @@ const fetchUserLocation = async () => {
             <Button
               onClick={nextStage}
               disabled={!investigatedAge || !investigatedGender || !investigatedLocation || !investigatedPhone}
-              className="mt-8 px-8 py-4 text-lg font-bold uppercase bg-gradient-to-r from-pink-500 to-red-600 text-white shadow-lg hover:from-pink-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 animate-pulse-slow disabled:opacity-50 disabled:cursor-not-allowed"
+              className="mt-8 px-8 py-4 text-lg font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              ➡️ CONTINUE
+              <ScanEye className="mr-2" size={20} />
+              CONTINUE
             </Button>
           </div>
         )
 case 2: // OLD STAGE 1: Upload and Handle
   return (
-  <div className="text-center space-y-8">
+  <div className="text-center space-y-8 px-4">
   <LimitWarningBanner />
-  <p className="text-3xl md:text-4xl font-bold text-white animate-pulse">
-  📸 Select a photo for facial analysis...
-            </p>
-            <div className="relative w-full max-w-md mx-auto border-2 border-dashed border-gray-600 p-6 rounded-lg text-gray-400 flex flex-col items-center justify-center gap-3 bg-gray-800/30 hover:border-gray-500 transition-colors duration-200 cursor-pointer">
-              <input
-                type="file"
-                accept="image/*"
-                className="absolute inset-0 opacity-0 cursor-pointer"
-                onChange={handleFileChange}
-                disabled={isAnalyzing}
-              />
-              {imagePreviewUrl ? (
-                <img
-                  src={imagePreviewUrl || "/placeholder.svg"}
-                  alt="Preview"
-                  className="max-h-40 max-w-full object-contain rounded-md"
-                />
-              ) : (
-                <Upload size={40} className="text-gray-500" />
-              )}
-              <p className="text-base">
-                {fileName ? `File selected: ${fileName}` : "Drag and drop or click to select"}
-              </p>
-              {fileName && !isAnalyzing && (
-                <div className="mt-3 text-green-400 flex items-center gap-2 animate-fade-in">
-                  <ScanEye size={20} />
-                  <span className="text-lg">Ready to scan!</span>
-                </div>
-              )}
-            </div>
+  <div className="space-y-2">
+    <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-2">
+      <span className="text-xs font-semibold tracking-widest text-primary uppercase">Step 2 of 3</span>
+    </div>
+    <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+      <span className="gradient-text-pink">Facial</span> Analysis
+    </h2>
+    <p className="text-base text-muted-foreground">
+      Select a photo for advanced facial recognition
+    </p>
+  </div>
+  <div className="relative w-full max-w-md mx-auto border-2 border-dashed border-border p-6 rounded-xl glass-card flex flex-col items-center justify-center gap-3 hover:border-primary/50 transition-colors duration-200 cursor-pointer">
+    <input
+      type="file"
+      accept="image/*"
+      className="absolute inset-0 opacity-0 cursor-pointer"
+      onChange={handleFileChange}
+      disabled={isAnalyzing}
+    />
+    {imagePreviewUrl ? (
+      <img
+        src={imagePreviewUrl || "/placeholder.svg"}
+        alt="Preview"
+        className="max-h-40 max-w-full object-contain rounded-md"
+      />
+    ) : (
+      <Upload size={40} className="text-muted-foreground" />
+    )}
+    <p className="text-base text-muted-foreground">
+      {fileName ? `File selected: ${fileName}` : "Drag and drop or click to select"}
+    </p>
+    {fileName && !isAnalyzing && (
+      <div className="mt-3 text-primary flex items-center gap-2 animate-fade-in">
+        <ScanEye size={20} />
+        <span className="text-lg font-medium">Ready to scan!</span>
+      </div>
+    )}
+  </div>
 
-            <p className="text-2xl md:text-3xl font-bold text-white animate-pulse mt-8">
-              🎯 TARGET IDENTIFICATION: Enter the target Instagram
-            </p>
-            <div className="relative w-full max-w-md mx-auto">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-              <input
-                type="text"
-                placeholder="@target_user"
-                value={investigatedHandle}
-                onChange={(e) => handleInstagramHandleChange(e.target.value)}
-                className="w-full p-3 pl-10 bg-gray-800/50 border border-gray-700 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
-                disabled={isAnalyzing}
-              />
-              {isLoadingInstagram && (
-                <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-pink-500"></div>
-                </div>
-              )}
-            </div>
+  <div className="space-y-2 mt-8">
+    <h3 className="text-xl md:text-2xl font-bold text-foreground">
+      Target <span className="gradient-text-pink">Identification</span>
+    </h3>
+    <p className="text-base text-muted-foreground">
+      Enter the target Instagram username
+    </p>
+  </div>
+  <div className="relative w-full max-w-md mx-auto">
+    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
+    <input
+      type="text"
+      placeholder="@target_user"
+      value={investigatedHandle}
+      onChange={(e) => handleInstagramHandleChange(e.target.value)}
+      className="w-full p-4 pl-12 glass-card border border-border rounded-xl text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+      disabled={isAnalyzing}
+    />
+    {isLoadingInstagram && (
+      <div className="absolute right-4 top-1/2 -translate-y-1/2">
+        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary"></div>
+      </div>
+    )}
+  </div>
 
             {/* Password Cracking Animation */}
             {(isCrackingPassword || passwordCracked) && investigatedHandle.length > 3 && (
