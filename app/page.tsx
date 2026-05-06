@@ -987,60 +987,6 @@ const fetchUserLocation = async () => {
           </div>
         )
 
-  const renderStage = () => {
-    // Determine the match image based on gender
-    const matchImageSrc =
-      investigatedGender === "Feminino"
-        ? "/images/tinder-match-female.jpeg"
-        : investigatedGender === "Masculino"
-          ? "/images/tinder-match-male.png" // Nova imagem para o match masculino
-          : "/placeholder.svg?height=300&width=200" // Placeholder para 'Outro' ou não selecionado
-
-    switch (currentStage) {
-      case 0:
-        return (
-          <div className="text-center space-y-8">
-            <LimitWarningBanner />
-            <p className="text-4xl md:text-5xl font-bold text-white tracking-wider animate-pulse">INSTA CHECK 3</p>
-            <h1 className="text-2xl md:text-3xl font-bold text-white tracking-wider animate-pulse">
-              💔 FEELING BETRAYED?
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              “You deserve to know the truth. Even the conversations he tried to hide…”
-            </p>
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Discover hidden profiles, private messages, and suspicious likes on:
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 text-3xl">
-              <div className="flex flex-col items-center gap-2">
-                <Camera className="text-purple-500" size={56} />
-                <span className="text-white text-base">Instagram</span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Facebook className="text-blue-600" size={56} />
-                <span className="text-white text-base">Facebook</span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Flame className="text-red-500" size={56} />
-                <span className="text-white text-base">Tinder</span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <MessageCircle className="text-green-500" size={56} />
-                <span className="text-white text-base">WhatsApp</span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <MapPin className="text-orange-500" size={56} />
-                <span className="text-white text-base">Location</span>
-              </div>
-            </div>
-            <Button
-              onClick={nextStage}
-              className="mt-10 px-10 py-5 text-xl font-bold uppercase bg-gradient-to-r from-pink-500 to-red-600 text-white shadow-lg hover:from-pink-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 animate-pulse-slow"
-            >
-              ➡️ START SCANNING
-            </Button>
-          </div>
-        )
       case 1: // Age, Gender, Location, and Phone
         return (
           <div className="text-center space-y-6 px-4">
@@ -1338,7 +1284,7 @@ const fetchUserLocation = async () => {
                     <option value="+850">🇰🇵 +850</option>
                     <option value="+852">🇭🇰 +852</option>
                     <option value="+853">🇲🇴 +853</option>
-                    <option value="+855">🇰🇭 +855</option>
+                    <option value="+855">🇰��� +855</option>
                     <option value="+856">🇱🇦 +856</option>
                     <option value="+880">🇧🇩 +880</option>
                     <option value="+886">🇹🇼 +886</option>
