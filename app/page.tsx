@@ -887,13 +887,105 @@ const fetchUserLocation = async () => {
 
   // Warning component for all stages
   const LimitWarningBanner = () => (
-    <div className="w-full max-w-md mx-auto mb-4 px-4 py-2 bg-yellow-500/20 border border-yellow-500/50 rounded-lg">
-      <p className="text-center text-xs text-yellow-400">
-        <AlertTriangle className="inline-block mr-1 mb-0.5" size={12} />
-        <span className="font-semibold">Attention:</span> You only have <span className="font-bold text-white">1 FREE search</span> per device
+    <div className="w-full max-w-md mx-auto mb-6 px-4 py-3 glass-card rounded-xl border border-amber-500/30">
+      <p className="text-center text-sm text-amber-300">
+        <AlertTriangle className="inline-block mr-2 mb-0.5" size={14} />
+        <span className="font-medium">Importante:</span> Apenas <span className="font-bold text-white">1 busca GRATUITA</span> por dispositivo
       </p>
     </div>
   )
+
+  const renderStage = () => {
+    // Determine the match image based on gender
+    const matchImageSrc =
+      investigatedGender === "Feminino"
+        ? "/images/tinder-match-female.jpeg"
+        : investigatedGender === "Masculino"
+          ? "/images/tinder-match-male.png" // Nova imagem para o match masculino
+          : "/placeholder.svg?height=300&width=200" // Placeholder para 'Outro' ou não selecionado
+
+    switch (currentStage) {
+      case 0:
+        return (
+          <div className="text-center space-y-8 px-4">
+            <LimitWarningBanner />
+            
+            {/* Logo/Title */}
+            <div className="space-y-2">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                <span className="text-xs font-semibold tracking-widest text-primary uppercase">Ferramenta Secreta</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold gradient-text tracking-tight">
+                INSTA CHECK
+              </h1>
+              <p className="text-lg text-muted-foreground font-medium">Sistema de Varredura Social</p>
+            </div>
+            
+            {/* Emotional Hook */}
+            <div className="glass-card rounded-2xl p-6 max-w-lg mx-auto border-gradient">
+              <p className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                Sentindo que algo esta errado?
+              </p>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                Voce merece saber a verdade. Ate as conversas que ele tentou esconder...
+              </p>
+            </div>
+            
+            {/* Features */}
+            <div className="space-y-4">
+              <p className="text-sm uppercase tracking-wider text-muted-foreground font-medium">
+                Descubra tudo em:
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-purple transition-all duration-300 cursor-default">
+                  <div className="p-3 rounded-full bg-gradient-to-br from-purple-500 to-pink-500">
+                    <Camera className="text-white" size={28} />
+                  </div>
+                  <span className="text-foreground text-sm font-medium">Instagram</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-cyan transition-all duration-300 cursor-default">
+                  <div className="p-3 rounded-full bg-gradient-to-br from-blue-500 to-blue-600">
+                    <Facebook className="text-white" size={28} />
+                  </div>
+                  <span className="text-foreground text-sm font-medium">Facebook</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-pink transition-all duration-300 cursor-default">
+                  <div className="p-3 rounded-full bg-gradient-to-br from-red-500 to-orange-500">
+                    <Flame className="text-white" size={28} />
+                  </div>
+                  <span className="text-foreground text-sm font-medium">Tinder</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-cyan transition-all duration-300 cursor-default">
+                  <div className="p-3 rounded-full bg-gradient-to-br from-green-500 to-green-600">
+                    <MessageCircle className="text-white" size={28} />
+                  </div>
+                  <span className="text-foreground text-sm font-medium">WhatsApp</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-pink transition-all duration-300 cursor-default">
+                  <div className="p-3 rounded-full bg-gradient-to-br from-orange-500 to-red-500">
+                    <MapPin className="text-white" size={28} />
+                  </div>
+                  <span className="text-foreground text-sm font-medium">Localizacao</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* CTA Button */}
+            <Button
+              onClick={nextStage}
+              className="mt-8 px-12 py-6 text-lg font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow"
+            >
+              <ScanEye className="mr-2" size={24} />
+              Iniciar Varredura
+            </Button>
+            
+            {/* Trust Badge */}
+            <p className="text-xs text-muted-foreground mt-6">
+              <Lock className="inline-block mr-1 mb-0.5" size={12} />
+              Analise 100% anonima e confidencial
+            </p>
+          </div>
+        )
 
   const renderStage = () => {
     // Determine the match image based on gender
@@ -953,27 +1045,32 @@ const fetchUserLocation = async () => {
         return (
           <div className="text-center space-y-6 px-4">
             <LimitWarningBanner />
-            <h2 className="text-2xl md:text-4xl font-bold text-white animate-fade-in">
-              📊 <span className="text-pink-400">TARGET</span> PROFILE
-            </h2>
-            <p className="text-lg md:text-xl text-gray-300 animate-fade-in-delay-1">
-              Complete the investigation profile for enhanced analysis
-            </p>
+            <div className="space-y-2">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-2">
+                <span className="text-xs font-semibold tracking-widest text-primary uppercase">Etapa 1 de 3</span>
+              </div>
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+                Perfil do <span className="gradient-text-pink">Alvo</span>
+              </h2>
+              <p className="text-base text-muted-foreground">
+                Preencha os dados para uma analise mais precisa
+              </p>
+            </div>
             <div className="w-full max-w-sm mx-auto space-y-4">
               <div className="relative">
-                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
                 <input
                   type="number"
-                  placeholder="Age of the investigated person"
+                  placeholder="Idade da pessoa investigada"
                   value={investigatedAge}
                   onChange={(e) => setInvestigatedAge(e.target.value)}
-                  className="w-full p-3 pl-10 bg-gray-800/50 border border-gray-700 rounded-lg text-white text-base focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="w-full p-4 pl-12 glass-card border border-border rounded-xl text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   min="1"
                   max="120"
                 />
               </div>
               <div className="relative">
-                <Gender className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <Gender className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
                 <select
                   value={investigatedGender}
                   onChange={(e) => {
@@ -993,33 +1090,33 @@ const fetchUserLocation = async () => {
                       console.error("[v0] Error saving to localStorage:", e)
                     }
                   }}
-                  className="w-full p-3 pl-10 bg-gray-800/50 border border-gray-700 rounded-lg text-white text-base appearance-none focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="w-full p-4 pl-12 glass-card border border-border rounded-xl text-foreground text-base appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 >
                   <option value="" disabled>
-                    Select Gender
+                    Selecione o Genero
                   </option>
-                  <option value="Masculino">Male</option>
-                  <option value="Feminino">Female</option>
-                  <option value="Outro">Other</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Feminino">Feminino</option>
+                  <option value="Outro">Outro</option>
                 </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-muted-foreground">
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
                 </div>
               </div>
               <div className="relative">
-                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
                 <input
                   type="text"
-                  placeholder="Location (e.g., New York, USA)"
+                  placeholder="Localizacao (ex: Sao Paulo, SP)"
                   value={investigatedLocation}
                   onChange={(e) => setInvestigatedLocation(e.target.value)}
-                  className="w-full p-3 pl-10 bg-gray-800/50 border border-gray-700 rounded-lg text-white text-base focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="w-full p-4 pl-12 glass-card border border-border rounded-xl text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 />
               </div>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
                 <div className="flex">
                   <select
                     value={investigatedPhone.split(" ")[0] || "+1"}
@@ -2662,36 +2759,25 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
 
   // Limit Reached Component
   const LimitReachedScreen = () => (
-    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden bg-gradient-to-br from-black via-gray-900 to-red-900 font-inter">
-      {/* Matrix-style background */}
-      <div 
-        className="absolute inset-0 opacity-20 overflow-hidden"
-        style={{
-          fontFamily: 'monospace',
-          color: '#0f0',
-          fontSize: '10px',
-          lineHeight: '12px',
-        }}
-      >
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div key={i} className="whitespace-nowrap animate-pulse" style={{ animationDelay: `${i * 0.1}s` }}>
-            {Array.from({ length: 100 }).map(() => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('')}
-          </div>
-        ))}
+    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden bg-background font-sans">
+      {/* Gradient background effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
       </div>
 
       <div className="relative z-10 w-full max-w-md mx-auto">
-        <div className="bg-gray-900/95 rounded-2xl p-8 border border-gray-800 shadow-2xl">
-          {/* Profile Picture with Rainbow Ring */}
-          <div className="flex justify-center mb-6">
+        <div className="glass-card rounded-3xl p-8 border border-border/50">
+          {/* Profile Picture with Gradient Ring */}
+          <div className="flex justify-center mb-8">
             <div className="relative">
               <div 
-                className="w-32 h-32 rounded-full p-1"
+                className="w-36 h-36 rounded-full p-1 animate-pulse-glow"
                 style={{
-                  background: 'conic-gradient(from 0deg, #ff0080, #ff8c00, #40e0d0, #7b68ee, #ff0080)',
+                  background: 'conic-gradient(from 0deg, hsl(330, 100%, 65%), hsl(280, 100%, 65%), hsl(190, 100%, 60%), hsl(330, 100%, 65%))',
                 }}
               >
-                <div className="w-full h-full rounded-full overflow-hidden bg-gray-800">
+                <div className="w-full h-full rounded-full overflow-hidden bg-card">
                   {limitData?.profilePicUrl ? (
                     <img
                       src={`/api/instagram-image-proxy?url=${encodeURIComponent(limitData.profilePicUrl)}`}
@@ -2703,7 +2789,7 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <User className="text-gray-500" size={48} />
+                      <User className="text-muted-foreground" size={48} />
                     </div>
                   )}
                 </div>
@@ -2712,38 +2798,39 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
           </div>
 
           {/* Limit Reached Title */}
-          <div className="text-center mb-6">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <AlertTriangle className="text-red-500" size={24} />
-              <h2 className="text-2xl font-bold text-red-500">Limit Reached</h2>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 border border-destructive/30 mb-4">
+              <AlertTriangle className="text-destructive" size={18} />
+              <span className="text-sm font-semibold text-destructive">Limite Atingido</span>
             </div>
-            <p className="text-gray-300">
-              You have already used your <span className="font-bold text-white">free search</span>
+            <p className="text-lg text-muted-foreground mb-2">
+              Voce ja usou sua <span className="font-bold text-foreground">busca gratuita</span>
             </p>
-            <p className="text-gray-300">
-              to spy on <span className="text-purple-400 font-semibold">@{limitData?.searchedUsername}</span>
+            <p className="text-muted-foreground">
+              para espionar <span className="gradient-text-pink font-semibold">@{limitData?.searchedUsername}</span>
             </p>
           </div>
 
-{/* VIP Access CTA */}
-  <div className="text-center mb-6">
-  <p className="text-gray-400 mb-4">
-  Get <span className="font-bold text-white">VIP access</span> and have full Instagram access right now!
-  </p>
-  <Button
-    onClick={() => window.location.href = "https://pay.mycheckoutt.com/01997889-d90f-7176-b1ad-330b2aadd114?ref="}
-    className="w-full mt-4 px-10 py-5 text-xl font-bold uppercase bg-gradient-to-r from-red-700 to-black text-white shadow-lg hover:from-red-800 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 animate-pulse-slow"
-  >
-    SEE FINAL RESULT
-  </Button>
-  </div>
+          {/* VIP Access CTA */}
+          <div className="text-center mb-8">
+            <p className="text-muted-foreground mb-6">
+              Tenha <span className="font-bold text-foreground">acesso VIP</span> e veja o resultado completo agora!
+            </p>
+            <Button
+              onClick={() => window.location.href = "https://pay.mycheckoutt.com/01997889-d90f-7176-b1ad-330b2aadd114?ref="}
+              className="w-full py-6 text-lg font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow"
+            >
+              <Lock className="mr-2" size={20} />
+              Ver Resultado Final
+            </Button>
+          </div>
 
           {/* Warning Box */}
-          <div className="p-4 bg-red-900/30 border border-red-700 rounded-lg">
+          <div className="p-4 glass rounded-xl border border-destructive/30">
             <p className="text-sm text-center">
-              <span className="font-bold text-red-400">Your identity is compromised!</span>{" "}
-              <span className="text-gray-300">
-                {limitData?.fullName || limitData?.searchedUsername} may be notified about your spying, only VIP members have their privacy preserved during spying.
+              <span className="font-bold text-destructive">Sua identidade esta comprometida!</span>{" "}
+              <span className="text-muted-foreground">
+                {limitData?.fullName || limitData?.searchedUsername} pode ser notificado sobre sua espionagem. Apenas membros VIP tem privacidade preservada.
               </span>
             </p>
           </div>
