@@ -1729,27 +1729,42 @@ case 2: // OLD STAGE 1: Upload and Handle
 
             <Button
               onClick={startAnalysis}
-              disabled={!fileName || !investigatedHandle || isAnalyzing} // Disable until file AND handle are present
-              className="mt-10 px-10 py-5 text-xl font-bold uppercase bg-gradient-to-r from-pink-500 to-red-600 text-white shadow-lg hover:from-pink-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 animate-pulse-slow disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={!fileName || !investigatedHandle || isAnalyzing}
+              className="mt-10 px-10 py-5 text-xl font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isAnalyzing ? "ANALYZING..." : "➡️ CONTINUE"}
+              {isAnalyzing ? "ANALYZING..." : "CONTINUE"}
             </Button>
           </div>
         )
 case 3: // OLD STAGE 2: Detection and Notifications
   return (
-  <div className="text-center space-y-8">
+  <div className="text-center space-y-8 px-4">
   <LimitWarningBanner />
-  <div className="grid gap-3 text-left max-w-xl mx-auto">
-  <p className="text-lg md:text-xl text-green-400 flex items-center gap-2 animate-fade-in">
-  <CheckCircle className="text-green-400" size={28} /> Instagram account found. Last access: 3h ago.
-              </p>
-              <p className="text-lg md:text-xl text-red-400 flex items-center gap-2 animate-fade-in-delay-1">
-                <Flame className="text-red-400" size={28} /> Hidden Tinder profile detected.
-              </p>
-              <p className="text-lg md:text-xl text-blue-400 flex items-center gap-2 animate-fade-in-delay-2">
+  <div className="space-y-2 mb-6">
+    <div className="inline-block px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 mb-2">
+      <span className="text-xs font-semibold tracking-widest text-green-400 uppercase">Analysis Complete</span>
+    </div>
+    <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+      <span className="gradient-text-pink">Suspicious</span> Activity Detected
+    </h2>
+  </div>
+  <div className="grid gap-4 text-left max-w-xl mx-auto">
+  <div className="glass-card p-4 rounded-xl border border-green-500/30 animate-fade-in">
+    <p className="text-lg text-green-400 flex items-center gap-3">
+      <CheckCircle className="text-green-400 flex-shrink-0" size={24} /> 
+      <span>Instagram account found. Last access: <span className="text-white font-semibold">3h ago</span></span>
+    </p>
+  </div>
+  <div className="glass-card p-4 rounded-xl border border-red-500/30 animate-fade-in-delay-1">
+    <p className="text-lg text-red-400 flex items-center gap-3">
+      <Flame className="text-red-400 flex-shrink-0" size={24} /> 
+      <span>Hidden Tinder profile <span className="text-white font-semibold">detected</span></span>
+    </p>
+  </div>
+  <div className="glass-card p-4 rounded-xl border border-blue-500/30 animate-fade-in-delay-2">
+    <p className="text-lg text-blue-400 flex items-center gap-3">
                 {imagePreviewUrl ? (
-                  <div className="relative w-7 h-7 rounded-full overflow-hidden border-2 border-blue-400 flex items-center justify-center">
+                  <div className="relative w-7 h-7 rounded-full overflow-hidden border-2 border-blue-400 flex items-center justify-center flex-shrink-0">
                     <img
                       src={imagePreviewUrl || "/placeholder.svg"}
                       alt="User"
@@ -1761,20 +1776,28 @@ case 3: // OLD STAGE 2: Detection and Notifications
                     />
                   </div>
                 ) : (
-                  <MessageCircle className="text-blue-400" size={28} />
+                  <MessageCircle className="text-blue-400 flex-shrink-0" size={24} />
                 )}
-                Private messages found.
-              </p>
-              <p className="text-lg md:text-xl text-pink-400 flex items-center gap-2 animate-fade-in-delay-3">
-                <Heart className="text-pink-400" size={28} /> Suspicious likes identified on old posts.
-              </p>
+                <span>Private messages <span className="text-white font-semibold">found</span></span>
+    </p>
+  </div>
+  <div className="glass-card p-4 rounded-xl border border-pink-500/30 animate-fade-in-delay-3">
+    <p className="text-lg text-pink-400 flex items-center gap-3">
+      <Heart className="text-pink-400 flex-shrink-0" size={24} /> 
+      <span>Suspicious likes identified on <span className="text-white font-semibold">old posts</span></span>
+    </p>
+  </div>
               {investigatedLocation && (
-                <p className="text-lg md:text-xl text-purple-400 flex items-center gap-2 animate-fade-in-delay-4">
-                  <MapPin className="text-purple-400" size={28} /> Location detected: {investigatedLocation}.
-                </p>
+  <div className="glass-card p-4 rounded-xl border border-purple-500/30 animate-fade-in-delay-4">
+    <p className="text-lg text-purple-400 flex items-center gap-3">
+      <MapPin className="text-purple-400 flex-shrink-0" size={24} /> 
+      <span>Location detected: <span className="text-white font-semibold">{investigatedLocation}</span></span>
+    </p>
+  </div>
               )}
               {analysisProgress >= 60 && (
-                <div className="flex items-center gap-3 p-3 bg-green-900/30 rounded-lg border border-green-700 animate-fade-in-delay-3">
+  <div className="glass-card p-4 rounded-xl border border-green-500/30 animate-fade-in-delay-3">
+    <div className="flex items-center gap-4">
                   {whatsappPhoto && (
                     <img
                       src={whatsappPhoto || "/placeholder.svg"}
@@ -1783,31 +1806,30 @@ case 3: // OLD STAGE 2: Detection and Notifications
                     />
                   )}
                   <div>
-                    <p className="text-lg md:text-xl text-green-400 flex items-center gap-2">
-                      <Phone className="text-green-400" size={28} /> PHONE FOUND
+                    <p className="text-lg text-green-400 flex items-center gap-2">
+                      <Phone className="text-green-400" size={20} /> PHONE FOUND
                     </p>
-                    <p className="text-sm text-gray-300">{investigatedPhone}</p>
+                    <p className="text-base text-muted-foreground">{investigatedPhone}</p>
                   </div>
-                </div>
+    </div>
+  </div>
               )}
-              <div className="relative mt-6 p-3 bg-gray-800/50 rounded-lg border border-gray-700 animate-fade-in-delay-4">
-                <p className="text-base text-white font-mono">
-                  <span className="text-green-400">[SYSTEM_LOG]</span> New activity detected:
-                </p>
-                <p className="text-base text-white font-mono ml-3">
-                  <span className="text-blue-400">[INSTAGRAM]</span> New message from @
-                  {investigatedGender === "Feminino" ? "alex22" : "alexia_30"}.
-                </p>
-                <p className="text-base text-white font-mono ml-3">
-                  <span className="text-blue-400">[INSTAGRAM]</span> @
-                  {investigatedGender === "Feminino" ? "rodrigo.b" : "izes"} liked your photo.
-                </p>
-              </div>
+  <div className="glass-card p-4 rounded-xl border border-border animate-fade-in-delay-4 font-mono">
+    <p className="text-sm text-foreground">
+      <span className="text-green-400">[SYSTEM_LOG]</span> New activity detected:
+    </p>
+    <p className="text-sm text-foreground ml-3 mt-1">
+      <span className="text-blue-400">[INSTAGRAM]</span> New message from @{investigatedGender === "Feminino" ? "alex22" : "alexia_30"}.
+    </p>
+    <p className="text-sm text-foreground ml-3">
+      <span className="text-blue-400">[INSTAGRAM]</span> @{investigatedGender === "Feminino" ? "rodrigo.b" : "izes"} liked your photo.
+    </p>
+  </div>
 
               {/* Instagram-style notifications */}
               <div className="mt-6 space-y-3 text-left">
                 {/* Notification 1: Liked Photo */}
-                <div className="flex items-center gap-3 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-5">
+                <div className="flex items-center gap-3 p-4 glass-card rounded-xl border border-border animate-fade-in-delay-5">
                   <img
                     src={
                       investigatedGender === "Feminino"
@@ -1815,22 +1837,22 @@ case 3: // OLD STAGE 2: Detection and Notifications
                         : "/images/female-placeholder-1.jpeg"
                     }
                     alt="User Avatar"
-                    className="w-10 h-10 rounded-full object-cover border-2 border-pink-500"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-pink-500"
                   />
                   <div className="flex-1">
-                    <p className="text-white text-sm">
+                    <p className="text-foreground text-sm">
                       <span className="font-semibold">
                         @{investigatedGender === "Feminino" ? "alex22" : "alexia_30"}
                       </span>{" "}
                       liked your photo
                     </p>
-                    <p className="text-gray-400 text-xs">2 minutes ago</p>
+                    <p className="text-muted-foreground text-xs">2 minutes ago</p>
                   </div>
-                  <Heart className="text-pink-500" size={16} />
+                  <Heart className="text-pink-500" size={18} />
                 </div>
 
                 {/* Notification 2: New Message */}
-                <div className="flex items-center gap-3 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-6">
+                <div className="flex items-center gap-3 p-4 glass-card rounded-xl border border-border animate-fade-in-delay-6">
                   <img
                     src={
                       investigatedGender === "Feminino"
@@ -1838,20 +1860,20 @@ case 3: // OLD STAGE 2: Detection and Notifications
                         : "/images/female-placeholder-2.jpeg"
                     }
                     alt="Message Avatar"
-                    className="w-10 h-10 rounded-full object-cover border-2 border-blue-500"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-blue-500"
                   />
                   <div className="flex-1">
-                    <p className="text-white text-sm">
+                    <p className="text-foreground text-sm">
                       <span className="font-semibold">@{investigatedGender === "Feminino" ? "rodrigo.b" : "izes"}</span>{" "}
                       sent you a message
                     </p>
-                    <p className="text-gray-400 text-xs">5 minutes ago</p>
+                    <p className="text-muted-foreground text-xs">5 minutes ago</p>
                   </div>
-                  <MessageCircle className="text-blue-500" size={16} />
+                  <MessageCircle className="text-blue-500" size={18} />
                 </div>
 
                 {/* Notification 3: Is typing... */}
-                <div className="flex items-center gap-3 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-7">
+                <div className="flex items-center gap-3 p-4 glass-card rounded-xl border border-border animate-fade-in-delay-7">
                   <img
                     src={
                       instagramProfile?.profile_pic_url
@@ -1859,21 +1881,21 @@ case 3: // OLD STAGE 2: Detection and Notifications
                         : imagePreviewUrl || "/placeholder.svg"
                     }
                     alt="User Avatar"
-                    className="w-10 h-10 rounded-full object-cover border-2 border-gray-500"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-muted"
                     crossOrigin="anonymous"
                   />
                   <div>
-                    <p className="text-sm text-white font-bold">
-                      {investigatedHandle || "@alvo"}
-                      <span className="text-gray-400 font-normal ml-1">is typing...</span>
+                    <p className="text-sm text-foreground font-bold">
+                      {investigatedHandle || "@target"}
+                      <span className="text-muted-foreground font-normal ml-1">is typing...</span>
                     </p>
-                    <p className="text-xs text-gray-500">Just now</p>
+                    <p className="text-xs text-muted-foreground">Just now</p>
                   </div>
                   <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse ml-auto"></span>
                 </div>
 
-                {/* Notification 4: Message received after typing (simulating "digita de novo") */}
-                <div className="flex items-center gap-3 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-8">
+                {/* Notification 4: Message received */}
+                <div className="flex items-center gap-3 p-4 glass-card rounded-xl border border-border animate-fade-in-delay-8">
                   <img
                     src={
                       instagramProfile?.profile_pic_url
@@ -1881,47 +1903,49 @@ case 3: // OLD STAGE 2: Detection and Notifications
                         : imagePreviewUrl || "/placeholder.svg"
                     }
                     alt="User Avatar"
-                    className="w-10 h-10 rounded-full object-cover border-2 border-blue-500"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-blue-500"
                     crossOrigin="anonymous"
                   />
                   <div>
-                    <p className="text-sm text-white font-bold">
-                      {investigatedHandle || "@alvo"}
-                      <span className="text-gray-400 font-normal ml-1">sent a new message.</span>
+                    <p className="text-sm text-foreground font-bold">
+                      {investigatedHandle || "@target"}
+                      <span className="text-muted-foreground font-normal ml-1">sent a new message.</span>
                     </p>
-                    <p className="text-xs text-gray-500">1 minute ago</p>
+                    <p className="text-xs text-muted-foreground">1 minute ago</p>
                   </div>
                   <MessageCircle size={20} className="text-blue-500 ml-auto" />
                 </div>
               </div>
             </div>
 
-            {/* Original section for blurred images and comments - adjusted delay */}
-            <div className="mt-6 space-y-5 text-left">
-              <p className="text-xl md:text-2xl text-white font-bold animate-fade-in-delay-9">
-                <span className="text-red-400">INTERCEPTED:</span> Suspicious Likes from {investigatedHandle || "@alvo"}
-              </p>
+            {/* Original section for blurred images and comments */}
+            <div className="mt-8 space-y-5 text-left">
+              <div className="space-y-2">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                  <span className="text-red-400">INTERCEPTED:</span> Suspicious Likes from {investigatedHandle || "@target"}
+                </h3>
+              </div>
 
               {investigatedGender === "Feminino" ? (
                 <>
                   {/* Male Photos for Female Investigation */}
                   {/* Liked Photo 1 - Man at beach */}
-                  <div className="flex flex-col gap-2 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-10">
-                    <div className="relative w-full h-64 rounded-md overflow-hidden">
+                  <div className="glass-card p-4 rounded-xl border border-border animate-fade-in-delay-10">
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
                       <img
                         src="/images/male-photo-beach.png"
                         alt="Liked Photo 1"
                         className="w-full h-full object-cover filter blur-sm"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                        <Lock size={48} className="text-white" />
+                        <Lock size={48} className="text-white/80" />
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-2 mt-3">
                       <Heart size={16} className="text-pink-400" />
-                      <span className="text-sm text-gray-300">2.1K likes</span>
+                      <span className="text-sm text-muted-foreground">2.1K likes</span>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-3 mt-3">
                       <img
                         src={
                           instagramProfile?.profile_pic_url
@@ -1929,19 +1953,19 @@ case 3: // OLD STAGE 2: Detection and Notifications
                             : imagePreviewUrl || "/placeholder.svg"
                         }
                         alt="User Avatar"
-                        className="w-8 h-8 rounded-full object-cover border border-gray-500"
+                        className="w-10 h-10 rounded-full object-cover border border-border"
                         crossOrigin="anonymous"
                       />
                       <div>
-                        <p className="text-sm text-gray-300 font-bold">{investigatedHandle || "@alvo"}</p>
-                        <p className="text-sm text-white">"very beautiful, I still want to meet you in person"</p>
+                        <p className="text-sm text-foreground font-bold">{investigatedHandle || "@target"}</p>
+                        <p className="text-sm text-muted-foreground">"very beautiful, I still want to meet you in person"</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Liked Photo 2 - Man in gym */}
-                  <div className="flex flex-col gap-2 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-11">
-                    <div className="relative w-full h-64 rounded-md overflow-hidden">
+                  <div className="glass-card p-4 rounded-xl border border-border animate-fade-in-delay-11">
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
                       <img
                         src="/images/male-photo-gym.png"
                         alt="Liked Photo 2"
@@ -1974,22 +1998,22 @@ case 3: // OLD STAGE 2: Detection and Notifications
                   </div>
 
                   {/* Liked Photo 3 - Man bathroom selfie */}
-                  <div className="flex flex-col gap-2 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-12">
-                    <div className="relative w-full h-64 rounded-md overflow-hidden">
+                  <div className="glass-card p-4 rounded-xl border border-border animate-fade-in-delay-12">
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
                       <img
                         src="/images/male-photo-bathroom.png"
                         alt="Liked Photo 3"
                         className="w-full h-full object-cover filter blur-sm"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                        <Lock size={48} className="text-white" />
+                        <Lock size={48} className="text-white/80" />
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-2 mt-3">
                       <Heart size={16} className="text-pink-400" />
-                      <span className="text-sm text-gray-300">4.5K likes</span>
+                      <span className="text-sm text-muted-foreground">4.5K likes</span>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-3 mt-3">
                       <img
                         src={
                           instagramProfile?.profile_pic_url
@@ -1997,12 +2021,12 @@ case 3: // OLD STAGE 2: Detection and Notifications
                             : imagePreviewUrl || "/placeholder.svg"
                         }
                         alt="User Avatar"
-                        className="w-8 h-8 rounded-full object-cover border border-gray-500"
+                        className="w-10 h-10 rounded-full object-cover border border-border"
                         crossOrigin="anonymous"
                       />
                       <div>
-                        <p className="text-sm text-gray-300 font-bold">{investigatedHandle || "@alvo"}</p>
-                        <p className="text-white text-sm">
+                        <p className="text-sm text-foreground font-bold">{investigatedHandle || "@target"}</p>
+                        <p className="text-sm text-muted-foreground">
                           "My friend, you're getting more handsome every day, I miss you."
                         </p>
                       </div>
@@ -2010,22 +2034,22 @@ case 3: // OLD STAGE 2: Detection and Notifications
                   </div>
 
                   {/* Liked Photo 4 - Man bathroom selfie 2 */}
-                  <div className="flex flex-col gap-2 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-13">
-                    <div className="relative w-full h-64 rounded-md overflow-hidden">
+                  <div className="glass-card p-4 rounded-xl border border-border animate-fade-in-delay-13">
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
                       <img
                         src="/images/male-photo-blue-eyes.png"
                         alt="Liked Photo 4"
                         className="w-full h-full object-cover filter blur-sm"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                        <Lock size={48} className="text-white" />
+                        <Lock size={48} className="text-white/80" />
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-2 mt-3">
                       <Heart size={16} className="text-pink-400" />
-                      <span className="text-sm text-gray-300">1.8K likes</span>
+                      <span className="text-sm text-muted-foreground">1.8K likes</span>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-3 mt-3">
                       <img
                         src={
                           instagramProfile?.profile_pic_url
@@ -2033,12 +2057,12 @@ case 3: // OLD STAGE 2: Detection and Notifications
                             : imagePreviewUrl || "/placeholder.svg"
                         }
                         alt="User Avatar"
-                        className="w-8 h-8 rounded-full object-cover border border-gray-500"
+                        className="w-10 h-10 rounded-full object-cover border border-border"
                         crossOrigin="anonymous"
                       />
                       <div>
-                        <p className="text-sm text-gray-300 font-bold">{investigatedHandle || "@alvo"}</p>
-                        <p className="text-white text-sm">"Hi handsome, what city are you from?"</p>
+                        <p className="text-sm text-foreground font-bold">{investigatedHandle || "@target"}</p>
+                        <p className="text-sm text-muted-foreground">"Hi handsome, what city are you from?"</p>
                       </div>
                     </div>
                   </div>
@@ -2047,22 +2071,22 @@ case 3: // OLD STAGE 2: Detection and Notifications
                 <>
                   {/* Female Photos for Male/Other Investigation */}
                   {/* Liked Photo 1 */}
-                  <div className="flex flex-col gap-2 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-10">
-                    <div className="relative w-full h-64 rounded-md overflow-hidden">
+                  <div className="glass-card p-4 rounded-xl border border-border animate-fade-in-delay-10">
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
                       <img
                         src="/images/liked-photo-princess.png"
                         alt="Liked Photo 1"
                         className="w-full h-full object-cover filter blur-sm"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                        <Lock size={48} className="text-white" />
+                        <Lock size={48} className="text-white/80" />
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-2 mt-3">
                       <Heart size={16} className="text-pink-400" />
-                      <span className="text-sm text-gray-300">1.2K likes</span>
+                      <span className="text-sm text-muted-foreground">1.2K likes</span>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-3 mt-3">
                       <img
                         src={
                           instagramProfile?.profile_pic_url
@@ -2070,33 +2094,33 @@ case 3: // OLD STAGE 2: Detection and Notifications
                             : imagePreviewUrl || "/placeholder.svg"
                         }
                         alt="User Avatar"
-                        className="w-8 h-8 rounded-full object-cover border border-gray-500"
+                        className="w-10 h-10 rounded-full object-cover border border-border"
                         crossOrigin="anonymous"
                       />
                       <div>
-                        <p className="text-sm text-gray-300 font-bold">{investigatedHandle || "@alvo"}</p>
-                        <p className="text-white text-sm">"What a wonderful princess."</p>
+                        <p className="text-sm text-foreground font-bold">{investigatedHandle || "@target"}</p>
+                        <p className="text-sm text-muted-foreground">"What a wonderful princess."</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Liked Photo 2 */}
-                  <div className="flex flex-col gap-2 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-11">
-                    <div className="relative w-full h-64 rounded-md overflow-hidden">
+                  <div className="glass-card p-4 rounded-xl border border-border animate-fade-in-delay-11">
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
                       <img
                         src="/images/liked-photo-2.jpeg"
                         alt="Liked Photo 2"
                         className="w-full h-full object-cover filter blur-sm"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                        <Lock size={48} className="text-white" />
+                        <Lock size={48} className="text-white/80" />
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-2 mt-3">
                       <Heart size={16} className="text-pink-400" />
-                      <span className="text-sm text-gray-300">2.4K likes</span>
+                      <span className="text-sm text-muted-foreground">2.4K likes</span>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-3 mt-3">
                       <img
                         src={
                           instagramProfile?.profile_pic_url
@@ -2104,12 +2128,12 @@ case 3: // OLD STAGE 2: Detection and Notifications
                             : imagePreviewUrl || "/placeholder.svg"
                         }
                         alt="User Avatar"
-                        className="w-8 h-8 rounded-full object-cover border border-gray-500"
+                        className="w-10 h-10 rounded-full object-cover border border-border"
                         crossOrigin="anonymous"
                       />
                       <div>
-                        <p className="text-sm text-gray-300 font-bold">{investigatedHandle || "@alvo"}</p>
-                        <p className="text-sm text-white"> "Those sunsets are unbeatable 🌅"</p>
+                        <p className="text-sm text-foreground font-bold">{investigatedHandle || "@target"}</p>
+                        <p className="text-sm text-muted-foreground"> "Those sunsets are unbeatable"</p>
                       </div>
                     </div>
                   </div>
@@ -2122,22 +2146,22 @@ case 3: // OLD STAGE 2: Detection and Notifications
                   />
 
                   {/* Liked Photo 4 */}
-                  <div className="flex flex-col gap-2 p-3 bg-gray-800/40 rounded-lg border border-gray-700 animate-fade-in-delay-13">
-                    <div className="relative w-full h-64 rounded-md overflow-hidden">
+                  <div className="glass-card p-4 rounded-xl border border-border animate-fade-in-delay-13">
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
                       <img
                         src="/images/garotas-lindas-melhores-amigas-alegres-irmas-curtindo-a-festa.avif"
                         alt="Liked Photo 4 - Group of friends enjoying a party"
                         className="w-full h-full object-cover filter blur-sm"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                        <Lock size={48} className="text-white" />
+                        <Lock size={48} className="text-white/80" />
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-2 mt-3">
                       <Heart size={16} className="text-pink-400" />
-                      <span className="text-sm text-gray-300">1.5K likes</span>
+                      <span className="text-sm text-muted-foreground">1.5K likes</span>
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-3 mt-3">
                       <img
                         src={
                           instagramProfile?.profile_pic_url
@@ -2145,12 +2169,12 @@ case 3: // OLD STAGE 2: Detection and Notifications
                             : imagePreviewUrl || "/placeholder.svg"
                         }
                         alt="User Avatar"
-                        className="w-8 h-8 rounded-full object-cover border border-gray-500"
+                        className="w-10 h-10 rounded-full object-cover border border-border"
                         crossOrigin="anonymous"
                       />
                       <div>
-                        <p className="text-sm text-gray-300 font-bold">{investigatedHandle || "@alvo"}</p>
-                        <p className="text-white text-sm"> "Great energy! Wish I was there with you all."</p>
+                        <p className="text-sm text-foreground font-bold">{investigatedHandle || "@target"}</p>
+                        <p className="text-sm text-muted-foreground"> "Great energy! Wish I was there with you all."</p>
                       </div>
                     </div>
                   </div>
@@ -2159,20 +2183,22 @@ case 3: // OLD STAGE 2: Detection and Notifications
             </div>
             <Button
               onClick={nextStage}
-              className="mt-10 px-10 py-5 text-xl font-bold uppercase bg-gradient-to-r from-pink-500 to-red-600 text-white shadow-lg hover:from-pink-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 animate-pulse-slow"
+              className="mt-10 px-10 py-5 text-xl font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow"
             >
-              ➡️ SEE MORE
+              SEE MORE
             </Button>
           </div>
         )
 case 4: // NEW STAGE: Tinder Likes Screen
   return (
-  <div className="flex flex-col w-full max-w-md mx-auto bg-black text-white rounded-lg shadow-lg h-[calc(100vh-4rem)] overflow-y-auto">
-  <LimitWarningBanner />
+  <div className="flex flex-col w-full max-w-md mx-auto glass-card text-foreground rounded-2xl shadow-2xl h-[calc(100vh-4rem)] overflow-y-auto border border-border">
+  <div className="p-4">
+    <LimitWarningBanner />
+  </div>
   {/* Top Bar */}
-            <div className="relative flex items-center justify-between p-3 bg-gray-900 border-b border-gray-800 flex-shrink-0">
+            <div className="relative flex items-center justify-between p-4 bg-card/80 border-b border-border flex-shrink-0">
               {/* Left: User Profile */}
-              <div className="flex items-center gap-2 z-10">
+              <div className="flex items-center gap-3 z-10">
                 <img
                   src={
                     instagramProfile?.profile_pic_url
@@ -2180,34 +2206,31 @@ case 4: // NEW STAGE: Tinder Likes Screen
                       : imagePreviewUrl || "/user-profile-illustration.png"
                   }
                   alt="User Profile"
-                  className="w-10 h-10 rounded-full object-cover border-2 border-red-500"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-red-500"
                   crossOrigin="anonymous"
                 />
-                <span className="text-white font-bold text-lg truncate max-w-[120px]">
+                <span className="text-foreground font-bold text-lg truncate max-w-[120px]">
                   {investigatedHandle || "@your_profile"}
                 </span>
               </div>
 
               {/* Right: Secondary Navigation */}
-              <div className="flex space-x-3 text-gray-400 text-xs z-10">
-                <span className="font-bold text-white border-b-2 border-red-500 pb-1">5 likes</span>
+              <div className="flex space-x-3 text-muted-foreground text-xs z-10">
+                <span className="font-bold text-foreground border-b-2 border-red-500 pb-1">5 likes</span>
                 <span className="hidden sm:block">Likes sent</span>
-                <span className="hidden sm:block">
-                  Highlights <span className="inline-block w-1.5 h-1.5 bg-red-500 rounded-full ml-0.5"></span>
-                </span>
               </div>
             </div>
 
-            <div className="text-center py-2 bg-gray-900 border-b border-gray-800 flex-shrink-0">
-              <span className="text-red-500 font-bold text-xl">tinder</span>
+            <div className="text-center py-3 bg-card/80 border-b border-border flex-shrink-0">
+              <span className="text-red-500 font-bold text-2xl">tinder</span>
             </div>
 
             {/* Main Content - "Veja quem já curtiu você." */}
-            <div className="p-3 text-center bg-gray-900 flex-shrink-0">
-              <p className="text-base text-gray-300">see who already liked you.</p>
+            <div className="p-4 text-center bg-card/50 flex-shrink-0">
+              <p className="text-lg text-muted-foreground">See who already liked you.</p>
             </div>
 
-            <div className="flex items-center justify-center gap-3 p-4 bg-blue-600/80 text-white font-bold text-lg rounded-lg mx-auto mt-4 w-[90%] animate-fade-in flex-shrink-0">
+            <div className="flex items-center justify-center gap-3 p-4 glass-card bg-blue-600/20 border border-blue-500/30 text-foreground font-bold text-lg rounded-xl mx-4 mt-4 animate-fade-in flex-shrink-0">
               <img
                 src={
                   instagramProfile?.profile_pic_url
@@ -2215,15 +2238,15 @@ case 4: // NEW STAGE: Tinder Likes Screen
                     : imagePreviewUrl || "/super-like-sender.jpg"
                 }
                 alt="Super Like Sender"
-                className="w-10 h-10 rounded-full object-cover border-2 border-yellow-300"
+                className="w-12 h-12 rounded-full object-cover border-2 border-yellow-400"
                 crossOrigin="anonymous"
               />
               <span>You received a Super Like!</span>
-              <Star size={24} className="text-yellow-300 fill-yellow-300" />
+              <Star size={24} className="text-yellow-400 fill-yellow-400" />
             </div>
 
             {showMissedMatch && (
-              <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in">
+              <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 glass-card bg-red-500/90 text-white px-6 py-3 rounded-xl shadow-lg animate-fade-in">
                 <div className="flex items-center gap-2">
                   <X size={20} />
                   <span className="font-bold">You missed a match!</span>
@@ -2532,62 +2555,63 @@ case 4: // NEW STAGE: Tinder Likes Screen
             </div>
 
             {/* Bottom Navigation */}
-            <div className="flex justify-around items-center p-2 bg-gray-900 border-t border-gray-800 flex-shrink-0">
-              <div className="flex flex-col items-center text-gray-400">
+            <div className="flex justify-around items-center p-3 bg-card/80 border-t border-border flex-shrink-0">
+              <div className="flex flex-col items-center text-muted-foreground">
                 <Home size={20} />
                 <span className="text-xs">Home</span>
               </div>
-              <div className="flex flex-col items-center text-gray-400">
+              <div className="flex flex-col items-center text-muted-foreground">
                 <Compass size={20} />
                 <span className="text-xs">Explore</span>
               </div>
               <div className="relative flex flex-col items-center text-red-500">
                 <Heart size={20} />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-3.5 h-3.5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                   5
                 </span>
                 <span className="text-xs">Likes</span>
               </div>
-              <div className="flex flex-col items-center text-gray-400">
+              <div className="flex flex-col items-center text-muted-foreground">
                 <MessageSquare size={20} />
                 <span className="text-xs">Chats</span>
               </div>
-              <div className="flex flex-col items-center text-gray-400">
+              <div className="flex flex-col items-center text-muted-foreground">
                 <User size={20} />
                 <span className="text-xs">Profile</span>
               </div>
             </div>
 
-            <Button
-              onClick={nextStage}
-              className="mt-3 px-10 py-5 text-xl font-bold uppercase bg-gradient-to-r from-red-600 to-red-800 text-white shadow-lg hover:from-red-700 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 animate-pulse-slow flex-shrink-0"
-            >
-              ➡️ UNLOCK DETAILS
-            </Button>
+            <div className="p-4">
+              <Button
+                onClick={nextStage}
+                className="w-full py-5 text-xl font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow flex-shrink-0"
+              >
+                UNLOCK DETAILS
+              </Button>
+            </div>
           </div>
         )
 case 5: // OLD STAGE 3: Revelation - Platform Detection
   return (
-  <div className="text-center space-y-6">
+  <div className="text-center space-y-6 px-4">
   <LimitWarningBanner />
   
   {/* Flashing Alert Banner */}
-  <div className="bg-red-600/20 border-2 border-red-500 rounded-lg p-4 animate-pulse mx-auto max-w-md">
+  <div className="glass-card bg-red-500/10 border-2 border-red-500/50 rounded-xl p-4 animate-pulse mx-auto max-w-md">
     <div className="flex items-center justify-center gap-2">
-      <AlertTriangle className="text-red-500" size={24} />
-      <span className="text-red-500 font-bold text-lg">PROFILE DETECTED ON OTHER PLATFORMS</span>
-      <AlertTriangle className="text-red-500" size={24} />
+      <AlertTriangle className="text-red-400" size={24} />
+      <span className="text-red-400 font-bold text-lg">PROFILE DETECTED ON OTHER PLATFORMS</span>
     </div>
   </div>
 
   {/* Platform Cards */}
   <div className="space-y-4 max-w-md mx-auto">
     {/* +18 Platforms Card */}
-    <div className="bg-gray-800/90 rounded-xl p-4 border border-gray-700">
+    <div className="glass-card rounded-xl p-5 border border-border">
       <div className="flex items-start gap-4">
         {/* User Photo Circle */}
         <div className="relative flex-shrink-0">
-          <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-600">
+          <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-border">
             {imagePreviewUrl ? (
               <img 
                 src={imagePreviewUrl} 
@@ -2595,8 +2619,8 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-gray-700 flex items-center justify-center">
-                <User className="text-gray-500" size={24} />
+              <div className="w-full h-full bg-card flex items-center justify-center">
+                <User className="text-muted-foreground" size={24} />
               </div>
             )}
           </div>
@@ -2606,28 +2630,26 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
         </div>
         
         {/* Content */}
-        <div className="flex-1">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-white font-bold text-lg">+18 Platforms</h3>
-          </div>
+        <div className="flex-1 text-left">
+          <h3 className="text-foreground font-bold text-lg mb-2">+18 Platforms</h3>
           <div className="flex items-center gap-2 text-yellow-400 mb-2">
             <AlertTriangle size={16} />
-            <span className="font-semibold">Possible profiles on:</span>
+            <span className="font-semibold text-sm">Possible profiles on:</span>
           </div>
-          <ul className="text-gray-300 text-sm space-y-1">
-            <li>• OnlyFans, Privacy</li>
-            <li>• Other adult platforms</li>
+          <ul className="text-muted-foreground text-sm space-y-1">
+            <li>OnlyFans, Privacy</li>
+            <li>Other adult platforms</li>
           </ul>
         </div>
       </div>
     </div>
 
     {/* Telegram Card */}
-    <div className="bg-gray-800/90 rounded-xl p-4 border border-gray-700">
+    <div className="glass-card rounded-xl p-5 border border-border">
       <div className="flex items-start gap-4">
         {/* User Photo Circle */}
         <div className="relative flex-shrink-0">
-          <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-600">
+          <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-border">
             {imagePreviewUrl ? (
               <img 
                 src={imagePreviewUrl} 
@@ -2635,8 +2657,8 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-gray-700 flex items-center justify-center">
-                <User className="text-gray-500" size={24} />
+              <div className="w-full h-full bg-card flex items-center justify-center">
+                <User className="text-muted-foreground" size={24} />
               </div>
             )}
           </div>
@@ -2646,18 +2668,18 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
         </div>
         
         {/* Content */}
-        <div className="flex-1">
+        <div className="flex-1 text-left">
           <div className="flex items-center gap-2 mb-2">
             <svg viewBox="0 0 24 24" className="w-6 h-6 text-blue-400" fill="currentColor">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
             </svg>
-            <h3 className="text-white font-bold text-lg">Telegram</h3>
+            <h3 className="text-foreground font-bold text-lg">Telegram</h3>
           </div>
-          <div className="mb-2">
+          <div className="mb-3">
             <span className="border-2 border-yellow-500 text-yellow-500 text-xs font-bold px-3 py-1 rounded-full">PROBABLY HIM</span>
           </div>
-          <div className="bg-gray-900 rounded-lg px-3 py-2 mt-2">
-            <span className="text-gray-400 font-mono text-sm">t.me/us*******</span>
+          <div className="glass rounded-lg px-3 py-2">
+            <span className="text-muted-foreground font-mono text-sm">t.me/us*******</span>
           </div>
         </div>
       </div>
@@ -2666,7 +2688,7 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
 
   <Button
     onClick={nextStage}
-    className="mt-6 px-10 py-5 text-xl font-bold uppercase bg-gradient-to-r from-red-600 to-red-800 text-white shadow-lg hover:from-red-700 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 animate-pulse-slow"
+    className="mt-6 px-10 py-5 text-xl font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow"
   >
     VIEW MORE DETAILS
   </Button>
@@ -2674,21 +2696,167 @@ case 5: // OLD STAGE 3: Revelation - Platform Detection
         )
       case 6: // OLD STAGE 4: Final CTA
         return (
-          <div className="text-center space-y-8">
-            <p className="text-3xl md:text-4xl font-bold text-white max-w-2xl mx-auto leading-relaxed animate-fade-in">
-              "Want full access to secret profiles, deleted conversations, and like history?"
-            </p>
+          <div className="text-center space-y-8 px-4">
+            <LimitWarningBanner />
+            
+            <div className="space-y-2">
+              <div className="inline-block px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 mb-2">
+                <span className="text-xs font-semibold tracking-widest text-red-400 uppercase">Final Step</span>
+              </div>
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-relaxed">
+                Want <span className="gradient-text-pink">full access</span> to secret profiles, deleted conversations, and like history?
+              </h2>
+            </div>
+            
             {timeLeft > 0 ? (
-              <p className="text-2xl md:text-3xl font-bold text-yellow-400 animate-pulse">
-                Offer ends in: {formatTime(timeLeft)}
-              </p>
+              <div className="glass-card p-4 rounded-xl border border-yellow-500/30 max-w-sm mx-auto">
+                <p className="text-2xl md:text-3xl font-bold text-yellow-400 animate-pulse">
+                  Offer ends in: {formatTime(timeLeft)}
+                </p>
+              </div>
             ) : (
-              <p className="text-2xl md:text-3xl font-bold text-red-500">Offer expired!</p>
+              <div className="glass-card p-4 rounded-xl border border-red-500/30 max-w-sm mx-auto">
+                <p className="text-2xl md:text-3xl font-bold text-red-500">Offer expired!</p>
+              </div>
             )}
+            
             <Button
               onClick={() =>
                 (window.location.href = "https://pay.mycheckoutt.com/01997889-d90f-7176-b1ad-330b2aadd114?ref=")
               }
+              disabled={timeLeft === 0}
+              className="mt-6 px-10 py-6 text-xl font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              SEE FINAL RESULT
+            </Button>
+
+            {/* Random Access Notifications */}
+            <div className="mt-8 w-full max-w-md mx-auto text-left space-y-3 glass-card p-5 rounded-xl border border-border">
+              <p className="text-lg font-bold text-foreground mb-4">
+                <span className="text-green-400">[LIVE FEED]</span> Recent Accesses:
+              </p>
+              {randomNotifications.map((notification) => (
+                <div key={notification.id} className="flex items-center gap-3 text-sm text-muted-foreground animate-fade-in">
+                  <ScanEye size={16} className="text-blue-400 flex-shrink-0" />
+                  <span className="font-mono">
+                    <span className="text-purple-400">{notification.user}</span> {notification.action}
+                  </span>
+                  <span className="ml-auto text-xs text-muted-foreground">{notification.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
+  // Limit Reached Component
+  const LimitReachedScreen = () => (
+    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden bg-background font-sans">
+      {/* Gradient background effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-md mx-auto">
+        <div className="glass-card rounded-3xl p-8 border border-border/50">
+          {/* Profile Picture with Gradient Ring */}
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              <div 
+                className="w-36 h-36 rounded-full p-1 animate-pulse-glow"
+                style={{
+                  background: 'conic-gradient(from 0deg, hsl(330, 100%, 65%), hsl(280, 100%, 65%), hsl(190, 100%, 60%), hsl(330, 100%, 65%))',
+                }}
+              >
+                <div className="w-full h-full rounded-full overflow-hidden bg-card">
+                  {limitData?.profilePicUrl ? (
+                    <img
+                      src={`/api/instagram-image-proxy?url=${encodeURIComponent(limitData.profilePicUrl)}`}
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/placeholder-user.jpg"
+                      }}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <User className="text-muted-foreground" size={48} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Limit Reached Title */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 border border-destructive/30 mb-4">
+              <AlertTriangle className="text-destructive" size={18} />
+              <span className="text-sm font-semibold text-destructive">Limit Reached</span>
+            </div>
+            <p className="text-lg text-muted-foreground mb-2">
+              You have already used your <span className="font-bold text-foreground">free search</span>
+            </p>
+            <p className="text-muted-foreground">
+              to spy on <span className="gradient-text-pink font-semibold">@{limitData?.searchedUsername}</span>
+            </p>
+          </div>
+
+          {/* VIP Access CTA */}
+          <div className="text-center mb-8">
+            <p className="text-muted-foreground mb-6">
+              Get <span className="font-bold text-foreground">VIP access</span> and see the full result now!
+            </p>
+            <Button
+              onClick={() => window.location.href = "https://pay.mycheckoutt.com/01997889-d90f-7176-b1ad-330b2aadd114?ref="}
+              className="w-full py-6 text-lg font-bold uppercase gradient-premium text-white rounded-xl shadow-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 animate-pulse-glow"
+            >
+              <Lock className="mr-2" size={20} />
+              See Final Result
+            </Button>
+          </div>
+
+          {/* Warning Box */}
+          <div className="p-4 glass rounded-xl border border-destructive/30">
+            <p className="text-sm text-center">
+              <span className="font-bold text-destructive">Your identity is compromised!</span>{" "}
+              <span className="text-muted-foreground">
+                {limitData?.fullName || limitData?.searchedUsername} may be notified about your spying. Only VIP members have their privacy preserved.
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
+  // Show limit reached screen if limit is exceeded
+  if (showLimitReached && limitData) {
+    return <LimitReachedScreen />
+  }
+
+  return (
+    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden bg-background font-sans">
+      {/* Gradient background effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px]" />
+      </div>
+      {/* Content container with transition */}
+      <div
+        className={`relative z-10 w-full max-w-2xl transition-opacity duration-500 ${
+          showContent ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {renderStage()}
+      </div>
+    </div>
+  )
+}
               disabled={timeLeft === 0}
               className="mt-10 px-10 py-5 text-xl font-bold uppercase bg-gradient-to-r from-red-700 to-black text-white shadow-lg hover:from-red-800 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 animate-pulse-slow disabled:opacity-50 disabled:cursor-not-allowed"
             >
