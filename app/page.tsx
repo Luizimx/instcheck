@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useCallback, useEffect, useRef, Suspense } from "react" // Import useRef and Suspense
 import { Button } from "@/components/ui/button"
-import { Camera, Flame, Facebook, CheckCircle, MessageCircle, Heart, Upload, ScanEye, User, Calendar, Beaker as Gender, Home, Compass, MessageSquare, X, Star, MapPin, Lock, Phone, ChevronLeft, ChevronRight } from "lucide-react"
+import { Camera, Flame, Facebook, CheckCircle, MessageCircle, Heart, Upload, ScanEye, User, Calendar, Beaker as Gender, Home, Compass, MessageSquare, X, Star, MapPin, Lock, Phone, ChevronLeft, ChevronRight, Mic, Send } from "lucide-react"
 import { fetchInstagramProfile, fetchInstagramPosts } from "@/lib/instagram-tracker"
 import { AlertTriangle } from "lucide-react"
 
@@ -938,36 +938,63 @@ const fetchUserLocation = async () => {
               <p className="text-sm uppercase tracking-wider text-muted-foreground font-medium">
                 Discover everything on:
               </p>
-              <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-purple transition-all duration-300 cursor-default">
-                  <div className="p-3 rounded-full bg-gradient-to-br from-purple-500 to-pink-500">
-                    <Camera className="text-white" size={28} />
-                  </div>
-                  <span className="text-foreground text-sm font-medium">Instagram</span>
-                </div>
-                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-cyan transition-all duration-300 cursor-default">
-                  <div className="p-3 rounded-full bg-gradient-to-br from-blue-500 to-blue-600">
-                    <Facebook className="text-white" size={28} />
-                  </div>
-                  <span className="text-foreground text-sm font-medium">Facebook</span>
-                </div>
-                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-pink transition-all duration-300 cursor-default">
-                  <div className="p-3 rounded-full bg-gradient-to-br from-red-500 to-orange-500">
-                    <Flame className="text-white" size={28} />
-                  </div>
-                  <span className="text-foreground text-sm font-medium">Tinder</span>
-                </div>
-                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-cyan transition-all duration-300 cursor-default">
+              <div className="grid grid-cols-4 gap-3 max-w-md mx-auto">
+                {/* Row 1 */}
+                <div className="flex flex-col items-center gap-2 p-3 glass rounded-xl hover:glow-cyan transition-all duration-300 cursor-default">
                   <div className="p-3 rounded-full bg-gradient-to-br from-green-500 to-green-600">
-                    <MessageCircle className="text-white" size={28} />
+                    <MessageCircle className="text-white" size={24} />
                   </div>
-                  <span className="text-foreground text-sm font-medium">WhatsApp</span>
+                  <span className="text-foreground text-xs font-medium">WhatsApp</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 p-4 glass rounded-xl hover:glow-pink transition-all duration-300 cursor-default">
-                  <div className="p-3 rounded-full bg-gradient-to-br from-orange-500 to-red-500">
-                    <MapPin className="text-white" size={28} />
+                <div className="flex flex-col items-center gap-2 p-3 glass rounded-xl hover:glow-purple transition-all duration-300 cursor-default">
+                  <div className="p-3 rounded-full bg-gradient-to-br from-purple-500 to-pink-500">
+                    <Camera className="text-white" size={24} />
                   </div>
-                  <span className="text-foreground text-sm font-medium">Location</span>
+                  <span className="text-foreground text-xs font-medium">Instagram</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 p-3 glass rounded-xl hover:glow-pink transition-all duration-300 cursor-default">
+                  <div className="p-3 rounded-full bg-gradient-to-br from-orange-500 to-red-500">
+                    <MapPin className="text-white" size={24} />
+                  </div>
+                  <span className="text-foreground text-xs font-medium">Location</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 p-3 glass rounded-xl hover:glow-pink transition-all duration-300 cursor-default">
+                  <div className="p-3 rounded-full bg-gradient-to-br from-red-500 to-orange-500">
+                    <Flame className="text-white" size={24} />
+                  </div>
+                  <span className="text-foreground text-xs font-medium">Tinder</span>
+                </div>
+                
+                {/* Row 2 - With Lock Icons */}
+                <div className="relative flex flex-col items-center gap-2 p-3 glass rounded-xl hover:glow-cyan transition-all duration-300 cursor-default">
+                  <Lock className="absolute top-2 right-2 text-amber-400" size={12} />
+                  <div className="p-3 rounded-full bg-gradient-to-br from-blue-500 to-blue-600">
+                    <Facebook className="text-white" size={24} />
+                  </div>
+                  <span className="text-foreground text-xs font-medium">Facebook</span>
+                </div>
+                <div className="relative flex flex-col items-center gap-2 p-3 glass rounded-xl hover:glow-cyan transition-all duration-300 cursor-default">
+                  <Lock className="absolute top-2 right-2 text-amber-400" size={12} />
+                  <div className="p-3 rounded-full bg-gradient-to-br from-blue-400 to-blue-500">
+                    <Send className="text-white" size={24} />
+                  </div>
+                  <span className="text-foreground text-xs font-medium">Telegram</span>
+                </div>
+                <div className="relative flex flex-col items-center gap-2 p-3 glass rounded-xl hover:glow-pink transition-all duration-300 cursor-default">
+                  <Lock className="absolute top-2 right-2 text-amber-400" size={12} />
+                  <div className="p-3 rounded-full bg-gradient-to-br from-black to-gray-800 border border-white/20">
+                    <svg viewBox="0 0 24 24" className="w-6 h-6 text-white" fill="currentColor">
+                      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                    </svg>
+                  </div>
+                  <span className="text-foreground text-xs font-medium">TikTok</span>
+                </div>
+                <div className="relative flex flex-col items-center gap-2 p-3 glass rounded-xl hover:glow-pink transition-all duration-300 cursor-default">
+                  <Lock className="absolute top-2 right-2 text-amber-400" size={12} />
+                  <div className="p-3 rounded-full bg-gradient-to-br from-red-500 to-red-600">
+                    <Mic className="text-white" size={24} />
+                  </div>
+                  <span className="text-foreground text-xs font-medium">Microphone</span>
                 </div>
               </div>
             </div>
